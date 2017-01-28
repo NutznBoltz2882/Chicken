@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
 import org.usfirst.frc.team2882.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2882.robot.subsystems.Ugokumono;
+import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,6 +21,8 @@ import org.usfirst.frc.team2882.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final Ugokumono movementSubsystem = new Ugokumono(0, new MotorType[]{
+			MotorType.SPARK, MotorType.SPARK, MotorType.VICTOR, MotorType.VICTOR});
 	public static OI oi;
 
     Command autonomousCommand;
@@ -27,9 +32,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+		oi = new OI(0);
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
+        
+//        Scheduler.getInstance().add(new MoveYourBody());
     }
 	
 	public void disabledPeriodic() {
@@ -68,6 +75,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	oi.poll(Scheduler.getInstance());
         Scheduler.getInstance().run();
     }
     

@@ -1,7 +1,11 @@
 package org.usfirst.frc.team2882.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.command.Scheduler;
+
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -14,6 +18,19 @@ public class OI {
     // number it is.
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
+	public final Joystick stickOfJoy;
+	
+	public OI(int port0) {
+		stickOfJoy = new Joystick(port0);
+	}
+	
+	// Updates the internal state, and creates commands as necessary
+	public void poll(Scheduler scheduler) {
+		double _y = stickOfJoy.getY();
+		if(_y > 0.1 || _y < -0.1) {
+			scheduler.add(new MoveYourBody(_y));
+		}
+	}
     
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
