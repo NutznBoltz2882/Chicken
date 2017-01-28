@@ -9,14 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveYourBody extends Command {
-	private double move;
+	private double move_y;
+	private double move_x;
 	private boolean finished = false;
 	
-    public MoveYourBody(double m) {
+    public MoveYourBody(double m, double m2) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.movementSubsystem);
-    	move = m;
+    	move_y = m;
+    	move_x = m2;
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +27,7 @@ public class MoveYourBody extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.movementSubsystem.move(move, 0.0);
+    	Robot.movementSubsystem.move(move_y, move_x);
     	finished = true;
     }
 

@@ -21,8 +21,8 @@ import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static final Ugokumono movementSubsystem = new Ugokumono(0, new MotorType[]{
-			MotorType.SPARK, MotorType.SPARK, MotorType.VICTOR, MotorType.VICTOR});
+	public static Ugokumono movementSubsystem = new Ugokumono(0, new MotorType[]{
+			MotorType.SPARK, MotorType.VICTOR, MotorType.SPARK, MotorType.VICTOR});
 	public static OI oi;
 
     Command autonomousCommand;
@@ -34,8 +34,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI(0);
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
-        
+        autonomousCommand = new ExampleCommand();        
 //        Scheduler.getInstance().add(new MoveYourBody());
     }
 	

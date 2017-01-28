@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Spark;
  *
  */
 public class Ugokumono extends Subsystem {
-	private SpeedController[] motors;
+	private SpeedController[] motors = new SpeedController[NUMBER_OF_MOTORS];
 	private static int NUMBER_OF_MOTORS = 4;
 	
 	private static SpeedController synthesizeMotor(MotorType type, int port) {
@@ -35,9 +35,15 @@ public class Ugokumono extends Subsystem {
 	
 	public void move(double y, double angle) {
 		double tl = 0, tr = 0, bl = 0, br = 0;
-		tl += y; tr += y; bl += y; br += y;
+		// Wheels are pos. opposite like
+		// frt
+		// v ^
+		// v ^
+		// bck
+		tl += angle; tr +=angle; bl += angle; br += angle;
+		tl -= y; tr += y; bl -= y; br += y;
 		
-		double[] motor_values = new double[] { tl, tr, bl, br };
+		double[] motor_values = new double[] { tl, bl, tr, br };
 		for(int i = 0; i < NUMBER_OF_MOTORS; i++) {
 			motors[i].set(motor_values[i]);
 		}

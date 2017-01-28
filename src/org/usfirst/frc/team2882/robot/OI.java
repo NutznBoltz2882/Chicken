@@ -26,9 +26,11 @@ public class OI {
 	
 	// Updates the internal state, and creates commands as necessary
 	public void poll(Scheduler scheduler) {
-		double _y = stickOfJoy.getY();
-		if(_y > 0.1 || _y < -0.1) {
-			scheduler.add(new MoveYourBody(_y));
+		double _y = stickOfJoy.getY() * 0.5 ;
+		double _angle = stickOfJoy.getX() * 0.5;
+		
+		if(_y > 0.1 || _y < -0.1 || _angle > 0.1 || _angle < -0.1) {
+			scheduler.add(new MoveYourBody(_y, _angle));
 		}
 	}
     
