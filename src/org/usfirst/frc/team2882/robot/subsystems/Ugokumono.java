@@ -3,6 +3,7 @@ package org.usfirst.frc.team2882.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 
 import org.usfirst.frc.team2882.robot.commands.StopIt;
 import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
@@ -22,6 +23,8 @@ public class Ugokumono extends Subsystem {
 			return new Spark(port);
 		case VICTOR:
 			return new Victor(port);
+		case VICTOR_SP:
+			return new VictorSP(port);
 		default:
 			throw new RuntimeException("IMPOSSIBLE!");
 		}
