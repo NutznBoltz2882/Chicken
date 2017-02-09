@@ -31,6 +31,8 @@ public class Ugokumono extends Subsystem {
 	}
 	
 	public Ugokumono(int offset, MotorType[] motorTypes) {
+		if(motorTypes.length != NUMBER_OF_MOTORS)
+			throw new RuntimeException("MotorTypes length != required");
 		for(int i = offset; i < offset + NUMBER_OF_MOTORS; i++) {
 			motors[i-offset] = synthesizeMotor(motorTypes[i-offset], i);
 		}
@@ -39,10 +41,10 @@ public class Ugokumono extends Subsystem {
 	public void move(double y, double angle) {
 		double tl = 0, tr = 0, bl = 0, br = 0;
 		// Wheels are pos. opposite like
-		// frt
+		// top
 		// v ^
 		// v ^
-		// bck
+		// btm
 		tl += angle; tr +=angle; bl += angle; br += angle;
 		tl -= y; tr += y; bl -= y; br += y;
 		

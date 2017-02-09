@@ -5,8 +5,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
+import org.usfirst.frc.team2882.robot.stuff.PDPNetworkExpose;
 import org.usfirst.frc.team2882.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2882.robot.subsystems.Ugokumono;
 import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
@@ -22,12 +25,13 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static Ugokumono movementSubsystem = new Ugokumono(0, new MotorType[]{
-			MotorType.SPARK, MotorType.VICTOR, MotorType.SPARK, MotorType.VICTOR});
+			MotorType.VICTOR_SP, MotorType.VICTOR_SP, MotorType.VICTOR_SP, MotorType.VICTOR_SP});
 	public static OI oi;
+	static PDPNetworkExpose expose = new PDPNetworkExpose();
 
     Command autonomousCommand;
 
-    /**
+	/**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
@@ -36,6 +40,10 @@ public class Robot extends IterativeRobot {
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();        
 //        Scheduler.getInstance().add(new MoveYourBody());
+        expose.expose(0, "0");
+        expose.expose(1, "1");
+        expose.expose(14, "3");
+        expose.expose(15, "2");
     }
 	
 	public void disabledPeriodic() {
@@ -84,4 +92,11 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    @Override
+	public void robotPeriodic() {
+    	System.out.println("JJJAK");
+		super.robotPeriodic();
+		expose.process();
+	}
 }
