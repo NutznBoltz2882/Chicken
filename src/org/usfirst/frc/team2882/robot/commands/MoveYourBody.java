@@ -4,14 +4,14 @@ import org.usfirst.frc.team2882.robot.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class MoveYourBody extends Command {
+public class MoveYourBody extends InstantCommand {
 	private double move_y;
 	private double move_x;
-	private boolean finished = false;
 	
     public MoveYourBody(double m, double m2) {
         // Use requires() here to declare subsystem dependencies
@@ -28,12 +28,6 @@ public class MoveYourBody extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.movementSubsystem.move(move_y, move_x);
-    	finished = true;
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return finished;
     }
 
     // Called once after isFinished returns true

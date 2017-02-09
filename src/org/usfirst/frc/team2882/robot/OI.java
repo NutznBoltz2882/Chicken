@@ -2,10 +2,12 @@ package org.usfirst.frc.team2882.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
+import org.usfirst.frc.team2882.robot.commands.Shimmy;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,6 +24,9 @@ public class OI {
 	
 	public OI(int port0) {
 		stickOfJoy = new Joystick(port0);
+		
+		Button button = new JoystickButton(stickOfJoy, 0);
+		button.whenPressed(new Shimmy(0.1, 1.0));
 	}
 	
 	// Updates the internal state, and creates commands as necessary
