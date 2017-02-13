@@ -25,7 +25,7 @@ public class OI {
 	public OI(int port0) {
 		stickOfJoy = new Joystick(port0);
 		
-		Button button = new JoystickButton(stickOfJoy, 0);
+		Button button = new JoystickButton(stickOfJoy, 6);
 		button.whenPressed(new Shimmy(0.1, 1.0));
 	}
 	

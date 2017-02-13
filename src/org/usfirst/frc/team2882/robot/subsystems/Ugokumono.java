@@ -40,6 +40,8 @@ public class Ugokumono extends Subsystem {
 	
 	public void move(double y, double angle) {
 		double tl = 0, tr = 0, bl = 0, br = 0;
+		
+		
 		// Wheels are pos. opposite like
 		// top
 		// v ^

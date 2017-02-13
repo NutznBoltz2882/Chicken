@@ -21,7 +21,7 @@ public class Shimmy extends TimedCommand {
 	private double sign = 1.0;
 	private Timer timer = new Timer();
 	
-	private final double SPEED = 0.5;
+	private final double SPEED = 0.15;
 	
 	
     public Shimmy(double _p, double _t) {
