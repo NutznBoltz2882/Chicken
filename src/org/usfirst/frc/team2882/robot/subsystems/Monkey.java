@@ -30,7 +30,7 @@ public class Monkey extends Subsystem {
 		}
 	}
 
-	public Ugokumono(int offset, MotorType[] motorTypes) {
+	public Monkey(int offset, MotorType[] motorTypes) {
 		if(motorTypes.length != NUMBER_OF_MOTORS)
 			throw new RuntimeException("MotorTypes length != required");
 		for(int i = offset; i < offset + NUMBER_OF_MOTORS; i++) {
