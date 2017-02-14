@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
+import org.usfirst.frc.team2882.robot.commands.Dance;
+import org.usfirst.frc.team2882.robot.commands.EnableDance;
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2882.robot.commands.ManualMonkey;
 import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
@@ -28,6 +30,10 @@ public class OI {
 		
 		Button button = new JoystickButton(stickOfJoy, 6);
 		button.whenPressed(new Shimmy(0.1, 1.0));
+		Button button2 = new JoystickButton(stickOfJoy, 3);
+		Button button3 = new JoystickButton(stickOfJoy, 2);
+		button3.whileHeld(new EnableDance());
+		button2.whenPressed(new Dance());
 	}
 	
 	// Updates the internal state, and creates commands as necessary

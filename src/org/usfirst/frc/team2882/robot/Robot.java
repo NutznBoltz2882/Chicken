@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 			MotorType.VICTOR_SP, MotorType.VICTOR_SP, MotorType.VICTOR_SP, MotorType.VICTOR_SP});
 	public static Monkey pulleySubsystem = new Monkey(4, new MotorType[]{MotorType.SPARK, MotorType.SPARK});
 	public static OI oi;
+	public static boolean canDance = false;
 	static PDPNetworkExpose expose;
 
     Command autonomousCommand;
