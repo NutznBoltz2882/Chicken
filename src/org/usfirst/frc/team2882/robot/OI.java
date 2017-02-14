@@ -1,16 +1,14 @@
 package org.usfirst.frc.team2882.robot;
 
+import org.usfirst.frc.team2882.robot.commands.Dance;
+import org.usfirst.frc.team2882.robot.commands.ManualMonkey;
+import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
+import org.usfirst.frc.team2882.robot.commands.Shimmy;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
-import org.usfirst.frc.team2882.robot.commands.Dance;
-import org.usfirst.frc.team2882.robot.commands.EnableDance;
-import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2882.robot.commands.ManualMonkey;
-import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
-import org.usfirst.frc.team2882.robot.commands.Shimmy;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,8 +29,6 @@ public class OI {
 		Button button = new JoystickButton(stickOfJoy, 6);
 		button.whenPressed(new Shimmy(0.1, 1.0));
 		Button button2 = new JoystickButton(stickOfJoy, 3);
-		Button button3 = new JoystickButton(stickOfJoy, 2);
-		button3.whileHeld(new EnableDance());
 		button2.whenPressed(new Dance());
 	}
 	
@@ -45,12 +41,12 @@ public class OI {
 			scheduler.add(new MoveYourBody(_y, _angle));
 		}
 		
-		double _z = (1 - stickOfJoy.getZ()) / 2;
-		System.out.println(_z);
-		System.out.println("P " + stickOfJoy.getZ());
-		if(_z > 0.1) {
+		double _z = stickOfJoy.getZ();
+//		System.out.println(_z);
+//		System.out.println("P " + stickOfJoy.getZ());
+		if(_z > 0.1 || _z < -0.1) {
 			// Use negative numbers to go FORWARD! YAHOOO!
-			scheduler.add(new ManualMonkey(-_z));
+			scheduler.add(new ManualMonkey(_z));
 		}
 	}
     

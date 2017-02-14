@@ -4,38 +4,36 @@ import org.usfirst.frc.team2882.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
  *
  */
-public class Dance extends Command {
-	Timer nTime = new Timer();
-	boolean xyzzy = false;
+public class Dance extends TimedCommand {
+	private final static double DANCE_TIME = 2.0;
+	private final static double SPPED = 0.5;
     public Dance() {
+    	super(DANCE_TIME);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.movementSubsystem);
-    	nTime.reset();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	nTime.start();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(nTime.hasPeriodPassed(2.0)) xyzzy = true;
-    	if(Robot.canDance) Robot.movementSubsystem.move(0, 0.5);
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return xyzzy;
+    	System.out.println(this.timeSinceInitialized());
+    	double tp = this.timeSinceInitialized() - (DANCE_TIME - SPPED);
+    	Robot.movementSubsystem.move(0, SPPED - Math.max(0, tp));
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	
     }
 
     // Called when another command which requires one or more of the same

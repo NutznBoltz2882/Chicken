@@ -33,8 +33,8 @@ public class PDPNetworkExpose {
 			if(!table.putNumber(i.name, pdp.getCurrent(i.channel))) {
 				System.out.println("MAYDAY MAYDAY CHANNEL NOT REPORTING "+i.name+" "+i.channel);
 			} else {
-				if(pdp.getCurrent(i.channel) > 0)
-				System.out.println("XRVB " + i.name + " " + i.channel + " " + pdp.getCurrent(i.channel));
+//				if(pdp.getCurrent(i.channel) > 0)
+//				System.out.println("XRVB " + i.name + " " + i.channel + " " + pdp.getCurrent(i.channel));
 			}
 		}
 	}

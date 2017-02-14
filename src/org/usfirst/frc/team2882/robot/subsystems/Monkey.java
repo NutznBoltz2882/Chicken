@@ -12,7 +12,7 @@ import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
- *
+ * TODO Make reversable (mainly a deal for OI)
  */
 public class Monkey extends Subsystem {
 	private SpeedController[] motors = new SpeedController[NUMBER_OF_MOTORS];
