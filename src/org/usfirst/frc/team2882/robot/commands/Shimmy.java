@@ -44,7 +44,7 @@ public class Shimmy extends TimedCommand {
     		sign *= -1;
     	}
     	// Shimmy
-    	Robot.movementSubsystem.move(SPEED * 0.5, sign * SPEED);
+    	Robot.movementSubsystem.move(-SPEED * 0.5, sign * SPEED);
     }
 
     // Called once after isFinished returns true
