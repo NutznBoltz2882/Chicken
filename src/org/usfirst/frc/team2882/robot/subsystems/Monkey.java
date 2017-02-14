@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
 
 import org.usfirst.frc.team2882.robot.commands.StopIt;
+import org.usfirst.frc.team2882.robot.commands.StopMonkey;
 import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
 
 import edu.wpi.first.wpilibj.Spark;
@@ -59,6 +60,6 @@ public class Monkey extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	// setDefaultCommand(new StopIt());
+    	 setDefaultCommand(new StopMonkey());
     }
 }

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2882.robot.commands.ManualMonkey;
 import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
 import org.usfirst.frc.team2882.robot.commands.Shimmy;
 
@@ -36,6 +37,14 @@ public class OI {
 		
 		if(_y > 0.1 || _y < -0.1 || _angle > 0.1 || _angle < -0.1) {
 			scheduler.add(new MoveYourBody(_y, _angle));
+		}
+		
+		double _z = (1 - stickOfJoy.getZ()) / 2;
+		System.out.println(_z);
+		System.out.println("P " + stickOfJoy.getZ());
+		if(_z > 0.1) {
+			// Use negative numbers to go FORWARD! YAHOOO!
+			scheduler.add(new ManualMonkey(-_z));
 		}
 	}
     

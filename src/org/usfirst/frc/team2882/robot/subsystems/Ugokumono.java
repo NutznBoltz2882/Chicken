@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Spark;
 public class Ugokumono extends Subsystem {
 	private SpeedController[] motors = new SpeedController[NUMBER_OF_MOTORS];
 	private static int NUMBER_OF_MOTORS = 4;
+	private static double BACK_LIMIT = 0.5;
 	
 	private static SpeedController synthesizeMotor(MotorType type, int port) {
 		switch (type) {
@@ -40,8 +41,8 @@ public class Ugokumono extends Subsystem {
 	
 	public void move(double y, double angle) {
 		double tl = 0, tr = 0, bl = 0, br = 0;
-		
-		
+		if (y < 0)
+			y *= BACK_LIMIT;
 		// Wheels are pos. opposite like
 		// top
 		// v ^
