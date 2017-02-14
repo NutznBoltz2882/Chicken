@@ -46,6 +46,8 @@ public class Robot extends IterativeRobot {
         expose.expose(1, "1");
         expose.expose(14, "3");
         expose.expose(15, "2");
+        expose.expose(2, "4");
+        expose.expose(3, "5");
     }
 	
 	public void disabledPeriodic() {

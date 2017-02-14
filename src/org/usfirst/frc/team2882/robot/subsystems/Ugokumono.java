@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.Spark;
 public class Ugokumono extends Subsystem {
 	private SpeedController[] motors = new SpeedController[NUMBER_OF_MOTORS];
 	private static int NUMBER_OF_MOTORS = 4;
-	private static double BACK_LIMIT = 0.25;
+	private static double BACK_LIMIT = 0.5;
 	
 	private static SpeedController synthesizeMotor(MotorType type, int port) {
 		switch (type) {
@@ -48,7 +48,7 @@ public class Ugokumono extends Subsystem {
 		// ^ v
 		// ^ v
 		// btm
-		tl += angle; tr +=angle; bl += angle; br += angle;
+		tl -= angle; tr -=angle; bl -= angle; br -= angle;
 		tl += y; tr -= y; bl += y; br -= y;
 		
 		double[] motor_values = new double[] { tl, bl, tr, br };
