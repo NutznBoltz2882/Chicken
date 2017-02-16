@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2882.robot.stuff.PDPNetworkExpose;
+import org.usfirst.frc.team2882.robot.stuff.NetworkExpose;
 import org.usfirst.frc.team2882.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2882.robot.subsystems.Ugokumono;
 import org.usfirst.frc.team2882.robot.subsystems.Monkey;
@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Monkey pulleySubsystem = new Monkey(4, new MotorType[]{MotorType.SPARK, MotorType.SPARK});
 	public static OI oi;
 	public static boolean canDance = false;
-	static PDPNetworkExpose expose;
+	static NetworkExpose expose;
 
     Command autonomousCommand;
 
@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI(0);
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();      
-        expose = new PDPNetworkExpose();
+        expose = new NetworkExpose();
 //        Scheduler.getInstance().add(new MoveYourBody());
         expose.expose(0, "0");
         expose.expose(1, "1");

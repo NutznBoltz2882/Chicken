@@ -40,6 +40,7 @@ public class Shimmy extends TimedCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.movementSubsystem.setBackLimit(false);
     	if(timer.hasPeriodPassed(pulse)) {
     		sign *= -1;
     	}
@@ -49,10 +50,12 @@ public class Shimmy extends TimedCommand {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.movementSubsystem.setBackLimit(true);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	this.end();
     }
 }
