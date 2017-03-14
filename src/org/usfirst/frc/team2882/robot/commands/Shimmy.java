@@ -21,7 +21,7 @@ public class Shimmy extends TimedCommand {
 	private double sign = 1.0;
 	private Timer timer = new Timer();
 	
-	private final double SPEED = 0.15;
+	private final double SPEED = 0.3;
 	
 	
     public Shimmy(double _p, double _t) {
@@ -30,11 +30,11 @@ public class Shimmy extends TimedCommand {
     	super(_t);
     	requires(Robot.movementSubsystem);
     	pulse = _p;
-    	timer.reset();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.reset();
     	timer.start();
     }
 
@@ -45,7 +45,7 @@ public class Shimmy extends TimedCommand {
     		sign *= -1;
     	}
     	// Shimmy
-    	Robot.movementSubsystem.move(-SPEED * 0.5, sign * SPEED);
+    	Robot.movementSubsystem.move(0, sign * SPEED);
     }
 
     // Called once after isFinished returns true

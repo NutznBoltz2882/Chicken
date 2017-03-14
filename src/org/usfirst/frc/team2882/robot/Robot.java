@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import org.usfirst.frc.team2882.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2882.robot.commands.MoonEater;
 import org.usfirst.frc.team2882.robot.stuff.NetworkExpose;
 import org.usfirst.frc.team2882.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2882.robot.subsystems.Ugokumono;
@@ -40,7 +41,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI(0);
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();      
+        autonomousCommand = new MoonEater();      
         expose = new NetworkExpose();
 //        Scheduler.getInstance().add(new MoveYourBody());
         expose.expose(0, "0");
@@ -66,6 +67,8 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
+    
+    
 
     public void teleopInit() {
 		// This makes sure that the autonomous stops running when

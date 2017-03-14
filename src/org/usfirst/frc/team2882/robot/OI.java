@@ -4,6 +4,7 @@ import org.usfirst.frc.team2882.robot.commands.Dance;
 import org.usfirst.frc.team2882.robot.commands.ManualMonkey;
 import org.usfirst.frc.team2882.robot.commands.MoveYourBody;
 import org.usfirst.frc.team2882.robot.commands.Shimmy;
+import org.usfirst.frc.team2882.robot.triggers.TwoButtonTrigger;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -27,15 +28,17 @@ public class OI {
 		stickOfJoy = new Joystick(port0);
 		
 		Button button = new JoystickButton(stickOfJoy, 6);
-		button.whenPressed(new Shimmy(0.1, 1.0));
+		button.whenPressed(new Shimmy(0.15, 1.0));
 		Button button2 = new JoystickButton(stickOfJoy, 3);
-		button2.whenPressed(new Dance());
+		Button button3 = new JoystickButton(stickOfJoy, 7);
+		TwoButtonTrigger danceTrigger = new TwoButtonTrigger(button2, button3);
+		danceTrigger.whenActive(new Dance());
 	}
 	
 	// Updates the internal state, and creates commands as necessary
 	public void poll(Scheduler scheduler) {
-		double _y = -stickOfJoy.getY() * 0.5 ;
-		double _angle = -stickOfJoy.getX() * 0.5;
+		double _y = -stickOfJoy.getY() * 1 ;
+		double _angle = -stickOfJoy.getX() * 0.7;
 		
 		if(_y > 0.1 || _y < -0.1 || _angle > 0.1 || _angle < -0.1) {
 			scheduler.add(new MoveYourBody(_y, _angle));
