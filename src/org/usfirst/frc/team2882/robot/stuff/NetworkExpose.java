@@ -3,9 +3,15 @@ package org.usfirst.frc.team2882.robot.stuff;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.wpi.first.wpilibj.ADXL345_I2C;
+import edu.wpi.first.wpilibj.ADXL345_SPI;
+import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 class PDPPair {
@@ -20,12 +26,11 @@ public class NetworkExpose {
 	NetworkTable table;
 	List<PDPPair> regs;
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	BuiltInAccelerometer accel = new BuiltInAccelerometer();
+	Accelerometer accel = new ADXL345_SPI(SPI.Port.kOnboardCS1, Range.k8G);
 	
 	public NetworkExpose() {
 		table = NetworkTable.getTable("pdp");
 		regs = new ArrayList<PDPPair>();
-		accel.initTable(NetworkTable.getTable("accel"));
 	}
 	
 	public void expose(int channel, String as) {
@@ -43,6 +48,10 @@ public class NetworkExpose {
 		}
 		table.putNumber("nrg", pdp.getTotalEnergy());
 		table.putNumber("temperature", pdp.getTemperature());
-		accel.updateTable();
+//		accel.updateTable();
+		NetworkTable accelTable = NetworkTable.getTable("accel");
+		accelTable.putNumber("x", accel.getX());
+		accelTable.putNumber("y", accel.getY());
+		accelTable.putNumber("z", accel.getZ());
 	}
 }

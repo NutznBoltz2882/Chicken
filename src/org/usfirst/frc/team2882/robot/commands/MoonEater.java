@@ -34,14 +34,14 @@ public class MoonEater extends Command {
     	requires(Robot.movementSubsystem);
     	toffset = Timer.getFPGATimestamp();
     	
-    	pidC = new PIDController(0.05, 0.0, 0.0, (PIDSource) gyra, Robot.movementSubsystem);
+    	pidC = new PIDController(0.005, 0.0, 0.0, (PIDSource) gyra, Robot.movementSubsystem);
     	pidC.initTable(NetworkTable.getTable("PIDANG"));
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	toffset = Timer.getFPGATimestamp();
-    	pidC.setAbsoluteTolerance(0.1);
+    	pidC.setAbsoluteTolerance(5.0);
     	pidC.setInputRange(0.0, 360.0);
     	pidC.setContinuous(true);
     	pidC.setOutputRange(-0.25, 0.25);
