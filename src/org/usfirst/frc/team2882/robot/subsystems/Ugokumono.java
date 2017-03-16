@@ -11,18 +11,21 @@ import edu.wpi.first.wpilibj.VictorSP;
 import org.usfirst.frc.team2882.robot.commands.StopIt;
 import org.usfirst.frc.team2882.robot.subsystems.util.MotorType;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
  *
  */
-public class Ugokumono extends Subsystem {
+public class Ugokumono extends Subsystem implements PIDOutput {
 	private SpeedController[] motors = new SpeedController[NUMBER_OF_MOTORS];
 	private static int NUMBER_OF_MOTORS = 4;
 	private static double BACK_LIMIT = 1;
-	private Gyro gyro = new AnalogGyro(1);
+	// LEft negative gyro Right positive gyro
+	private Gyro gyro = new ADXRS450_Gyro();
 	
 	private PIDController[] pidcs = new PIDController[NUMBER_OF_MOTORS/2]; // Why half? BC we have 1 encoder.
 	// We'll have to have the robot system adjust the other side based on the gyrometer.
@@ -88,5 +91,11 @@ public class Ugokumono extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new StopIt());
     }
+
+	@Override
+	public void pidWrite(double output) {
+		// Use pid to get to goal ANGLE, sooo
+		this.move(0, output);
+	}
 }
 
